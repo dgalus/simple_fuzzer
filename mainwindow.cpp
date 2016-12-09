@@ -12,11 +12,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    /*for(std::vector<Fuzzer*>::iterator it = fuzzerThreads.begin(); it != fuzzerThreads.end(); it++)
+    for(std::vector<Fuzzer*>::iterator it = fuzzerThreads.begin(); it != fuzzerThreads.end(); it++)
     {
         (*it)->Stop = true;
         (*it)->terminate();
-    }*/
+    }
     delete ui;
 }
 
@@ -36,7 +36,7 @@ void MainWindow::onCpuValuesIn(int cpu1, int cpu2, int cpu3, int cpu4)
 void MainWindow::on_startButton_clicked()
 {
     cpu->start();
-    /*for(int i = 0; i < ui->threadCountSpin->value(); i++)
+    for(int i = 0; i < ui->threadCountSpin->value(); i++)
     {
         Fuzzer* f = new Fuzzer(i, this);
         f->Stop = false;
@@ -45,6 +45,6 @@ void MainWindow::on_startButton_clicked()
     for(int i = 0; i < ui->threadCountSpin->value(); i++)
     {
         connect(fuzzerThreads.at(i), SIGNAL(printInfo(QString)), this, SLOT(onMessageIn(QString)));
-        fuzzerThreads.at(i)->run();
-    }*/
+        fuzzerThreads.at(i)->start();
+    }
 }
