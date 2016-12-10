@@ -9,11 +9,13 @@ void Fuzzer::run()
     {
         QMutex mutex;
         mutex.lock();
-        if(this->Stop)
-            break;
+        if(!this->Stop)
+        {
+
+            QString msg = "Thread #" + QString::number(this->threadId) + ": Message = " + QString::number(i);
+            emit printInfo(msg, true);
+        }
         mutex.unlock();
-        QString msg = "Thread #" + QString::number(this->threadId) + ": Message = " + QString::number(i);
-        emit printInfo(msg);
         this->msleep(100);
     }
 }

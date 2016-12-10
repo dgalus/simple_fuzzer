@@ -14,7 +14,7 @@ public:
     bool Stop;
 
 signals:
-    void printInfo(QString);
+    void printInfo(QString, bool);
 private:
     int threadId;
 };

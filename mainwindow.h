@@ -20,7 +20,7 @@ public:
     ~MainWindow();
 
 public slots:
-    void onMessageIn(QString);
+    void onMessageIn(QString, bool);
     void onCpuValuesIn(int, int, int, int);
 
 private slots:
@@ -30,6 +30,9 @@ private:
     Ui::MainWindow *ui;
     CpuUsage *cpu;
     std::vector<Fuzzer*> fuzzerThreads;
+    bool running;
+    int counterAll;
+    int counterPositive;
 };
 
 #endif // MAINWINDOW_H
