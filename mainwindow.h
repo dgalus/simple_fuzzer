@@ -2,8 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+
 #include <algorithm>
 #include <vector>
+
+#include <sys/stat.h>
+#include <sys/types.h>
+
 #include "Fuzzer.h"
 #include "CpuUsage.h"
 

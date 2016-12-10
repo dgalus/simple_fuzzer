@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->running = false;
     this->counterAll = 0;
     this->counterPositive = 0;
+    mkdir("tmp", S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+    mkdir("crashes", S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 }
 
 MainWindow::~MainWindow()
@@ -73,6 +75,7 @@ void MainWindow::on_startButton_clicked()
             (*it)->wait();
         }
         fuzzerThreads.erase(fuzzerThreads.begin(), fuzzerThreads.end());
+        // TODO: delete all temporary files
         ui->startButton->setText("Start");
         running = false;
     }
