@@ -68,6 +68,18 @@ void MainWindow::on_startButton_clicked()
     }
     else
     {
+        QFile f("stats.txt");
+        if (f.open(QIODevice::WriteOnly | QIODevice::Append)) {
+            QTextStream ts(&f);
+            ts << "Threads = " << fuzzerThreads.size() << endl;
+            ts << "Tests done = " << ui->testCountEdit->text() << endl;
+            ts << "Crashes = " << ui->crashCountEdit->text() << endl;
+            ts << "CPU1 = " << ui->cpu1ProgressBar->value() << endl;
+            ts << "CPU2 = " << ui->cpu2ProgressBar->value() << endl;
+            ts << "CPU3 = " << ui->cpu3ProgressBar->value() << endl;
+            ts << "CPU4 = " << ui->cpu4ProgressBar->value() << endl << endl << endl;
+        }
+        f.close();
         for(std::vector<Fuzzer*>::iterator it = fuzzerThreads.begin(); it != fuzzerThreads.end(); it++)
         {
             (*it)->Stop = true;
